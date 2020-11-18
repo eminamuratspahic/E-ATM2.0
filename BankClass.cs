@@ -63,7 +63,7 @@ namespace E_ATM
             var timeAndMoney = time.Zip(Transaction, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
-                output += ($"{nw.time} {nw.money}kr");
+                output += ($"{nw.time} {nw.money}kr\n");
             }
             return output;
 
