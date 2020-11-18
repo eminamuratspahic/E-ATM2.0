@@ -67,6 +67,7 @@ namespace E_ATM
 
                         case MenuChoices.TRANSAKTIONSHISTORIK:
                             Console.WriteLine("TRANSAKTIONSHISTORIK");
+                            Console.WriteLine(bankClass.AllTransaction());
                             Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
