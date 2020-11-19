@@ -4,7 +4,6 @@ namespace E_ATM
     {
         int pinNum { get; set; }
         int cardNum { get; set; }
-        int amountOfTries { get; set; }
         //void Registration()  
     }
     

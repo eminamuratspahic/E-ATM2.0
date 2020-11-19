@@ -23,8 +23,7 @@ namespace E_ATM
                 if (cardNum == card)
                 {
                     return "Grattis du kom in! Slå in din pinkod!";
-                }
-                else
+                }else
                 {
                     Console.WriteLine("Fel försök igen!");
                 }

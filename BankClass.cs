@@ -7,14 +7,12 @@ namespace E_ATM
     public class BankClass : IBank
     {
 
-        public int amountOfWithdrawnsLeft = 5;
+        public int amountOfWithdrawnsLeft { get; set; }
         public int maxAmount { get; set; }
         public double amountOfExistingMoney = 10000;
-        public double amount { get; set; }
-        public double amountOfExisting { get; set; }
-        public DateTime Birthday { get; set; } = DateTime.Now;
 
-        private List<double> Transaction = new List<double>();
+        private List<double> transaction = new List<double>();
+        private List<double> deposit = new List<double>();
         private List<DateTime> time = new List<DateTime>();
 
 
@@ -33,15 +31,15 @@ namespace E_ATM
 
         public bool Withdrawn(double amount)
         {
-
+            maxAmount = 5000;
             var date = DateTime.Now;
             try
             {
 
-                if (amount <= amountOfExistingMoney)
+                if (amount <= amountOfExistingMoney && amount <= maxAmount)
                 {
                     amountOfExistingMoney -= amount;
-                    Transaction.Add(amount);
+                    transaction.Add(amount);
                     time.Add(date);
                     return true;
                 }
@@ -54,17 +52,27 @@ namespace E_ATM
             {
                 throw new Exception(e.Message);
             }
-
         }
 
         public string AllTransaction()
-        {  
+        {
             string output = "";
-            var timeAndMoney = time.Zip(Transaction, (n, w) => new { time = n, money = w });
+            var timeAndMoney = time.Zip(transaction, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
-                output += ($"{nw.time}: -{nw.money}kr\n");
+
+                output += ($"{nw.time}:-{nw.money}kr\n");
+
             }
+            var timeAndMoney1 = time.Zip(deposit, (n, w) => new { time = n, money = w });
+            foreach (var nw in timeAndMoney1)
+            {
+
+                output += ($"{nw.time}:+{nw.money}kr\n");
+
+            }
+
+
             return output + $"Tillgängligt belopp: {amountOfExistingMoney} kr";
 
         }
@@ -73,6 +81,7 @@ namespace E_ATM
             try
             {
                 amountOfExistingMoney += amount;
+                deposit.Add(amount);
             }
             catch (Exception ex)
             {
@@ -84,7 +93,7 @@ namespace E_ATM
 
         public string CheckAmountOfWithdraw(double money, bool withdraw)
         {
-            int amountOfWithdrawnsLeft1 = amountOfWithdrawnsLeft;
+            amountOfWithdrawnsLeft = 5;
             string output = "";
 
 
@@ -104,15 +113,6 @@ namespace E_ATM
             }
             return output;
         }
-
-
-
-        public void CheckMaxAmount()
-        {
-
-
-        }
-
 
 
     }
