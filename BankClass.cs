@@ -59,13 +59,13 @@ namespace E_ATM
 
         public string AllTransaction()
         {  
-             string output = "";
+            string output = "";
             var timeAndMoney = time.Zip(Transaction, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
-                output += ($"{nw.time} {nw.money}kr\n");
+                output += ($"{nw.time}: -{nw.money}kr\n");
             }
-            return output;
+            return output + $"Tillgängligt belopp: {amountOfExistingMoney} kr";
 
         }
         public double Deposit(double amount)

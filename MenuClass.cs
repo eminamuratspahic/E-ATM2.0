@@ -35,11 +35,11 @@ namespace E_ATM
                     Console.WriteLine(index + ": " + str);
                 }
 
-                 Console.WriteLine ("\nAnge ditt val : 1-3 :\n");
-                 string choice = Console.ReadLine ();
+                Console.WriteLine("\nAnge ditt val : 1-3 :\n");
+                string choice = Console.ReadLine();
 
-                       int intChoice; 
-                    if (!int.TryParse(choice, out intChoice))
+                int intChoice;
+                if (!int.TryParse(choice, out intChoice))
                 {
 
                     Console.WriteLine("Valet ska anges i siffervärde, möjliga val 1-2-3.");
@@ -58,9 +58,8 @@ namespace E_ATM
                             Console.WriteLine("Ange det beloppet du vill ta ut!");
                             double money = Convert.ToDouble(Console.ReadLine());
                             bool withdraw = bankClass.Withdrawn(money);
-                            Console.WriteLine(bankClass.CheckAmountOfWithdraw(money,withdraw));
-
-
+                            Console.WriteLine(bankClass.CheckAmountOfWithdraw(money, withdraw));
+                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                             Console.ReadKey();
 
                             break;
@@ -77,9 +76,10 @@ namespace E_ATM
                             double amountOfMoney2 = double.Parse(Console.ReadLine());
                             double newBalance = bankClass.Deposit(amountOfMoney2);
                             Console.WriteLine($"Ditt nya belopp: {newBalance}");
+                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
-                            
+
                         case MenuChoices.AVSLUTA:
                             Console.WriteLine("LOGGA UT");
                             Environment.Exit(0);
