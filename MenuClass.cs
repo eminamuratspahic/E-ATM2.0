@@ -39,24 +39,25 @@ namespace E_ATM
                 int index = 0;
                 Console.WriteLine("E-ATM\n");
 
-                foreach (string str in Enum.GetNames(typeof(MenuChoices)))
+                foreach (string str in Enum.GetNames(typeof(MenuChoices))) 
                 {
                     index++;
-                    Console.WriteLine(index + ": " + str);
+
+                    Console.WriteLine(index + ": " + str);// skriver ut enum-s alternativ med en index siffra på vänster sida, knuten till varje alternativ
                 }
 
                 Console.WriteLine("\nAnge ditt val : 1-4 :\n");
                 string choice = Console.ReadLine();
                 int intChoice;
-
-                if (!int.TryParse(choice, out intChoice))
+                if (!int.TryParse(choice, out intChoice)) // testar om det inmatade valet är en siffra
                 {
+
                     Console.WriteLine("Valet ska anges i siffervärde, möjliga val 1-2-3-4.");
                     Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                     Console.ReadKey();
                 }
                 else
-                {  // testar validering, komentera bort hit om det inte funkar
+                {  
                     MenuChoices MenuChoice = (MenuChoices)Enum.Parse(typeof(MenuChoices), choice);
 
                     switch (MenuChoice)

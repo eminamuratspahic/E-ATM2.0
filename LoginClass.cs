@@ -7,19 +7,18 @@ namespace E_ATM
         public int pinNum { get; set; }
         public int cardNum { get; set; }
         public int amountOfTries { get; set; }
-
+        MenuClass menuClass = new MenuClass();
         public LoginClass()
         {
         }
 
         public string VerifyCardNumber(int card)
-        {
+        {   
             while (true)
             {
                 try
                 {
                     card = int.Parse(Console.ReadLine());
-
                     if (cardNum == card)
                     {
                         return "Grattis du kom in! Slå in din pinkod!";
@@ -28,7 +27,6 @@ namespace E_ATM
                     {
                         Console.WriteLine("Fel försök igen!");
                     }
-
                 }
                 catch (Exception)
                 {
@@ -39,26 +37,25 @@ namespace E_ATM
 
         public string VerifyPin(int pin)
         {
-            amountOfTries = 0;
+            amountOfTries = 2;
             while (true)
             {
                 try
                 {
                     pin = int.Parse(Console.ReadLine());
-
-                    if (amountOfTries < 3 && pinNum == pin)
+                    if (amountOfTries > 0 && pinNum == pin)
                     {
-                        return "Grattis du kom in!";
-
+                        Console.WriteLine("Grattis du kom in!");
+                        menuClass.ShowMenu();
                     }
-                    else if (amountOfTries > 3)
+                    else if (amountOfTries == 0)
                     {
-                        return "För många misslyckade försök! Ditt kort spärras";
+                        return "För många misslyckade försök! Ditt kort spärras!";
                     }
                     else
                     {
-                        Console.WriteLine("Fel försök igen!");
-                        amountOfTries++;
+                        Console.WriteLine($"Fel försök igen! Du har {amountOfTries} försök kvar!");
+                        amountOfTries--;
                     }
                 }
                 catch (Exception)
@@ -69,3 +66,4 @@ namespace E_ATM
         }
     }
 }
+
