@@ -5,25 +5,36 @@ namespace E_ATM
 
     public class MenuClass
     {
-
-        public string choice;
-
         BankClass bankClass = new BankClass();
 
         public enum MenuChoices
         {
-
             UTTAG = 1,
             TRANSAKTIONSHISTORIK,
             INSÄTTNING,
             AVSLUTA
-
         }
+
+        public double TryAndCatch()
+        {
+            while (true)
+            {
+                try
+                {
+                    double money = Convert.ToDouble(Console.ReadLine());
+                    return money;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Ange siffror!");
+                }
+            }
+        }
+
         public void ShowMenu()
         {
             while (true)
             {
-
                 Console.Clear();
                 int index = 0;
                 Console.WriteLine("E-ATM\n");
@@ -31,18 +42,16 @@ namespace E_ATM
                 foreach (string str in Enum.GetNames(typeof(MenuChoices)))
                 {
                     index++;
-
                     Console.WriteLine(index + ": " + str);
                 }
 
-                Console.WriteLine("\nAnge ditt val : 1-3 :\n");
+                Console.WriteLine("\nAnge ditt val : 1-4 :\n");
                 string choice = Console.ReadLine();
-
                 int intChoice;
+
                 if (!int.TryParse(choice, out intChoice))
                 {
-
-                    Console.WriteLine("Valet ska anges i siffervärde, möjliga val 1-2-3.");
+                    Console.WriteLine("Valet ska anges i siffervärde, möjliga val 1-2-3-4.");
                     Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                     Console.ReadKey();
                 }
@@ -54,14 +63,12 @@ namespace E_ATM
                     {
                         case MenuChoices.UTTAG:
                             Console.WriteLine("UTTAG");
-
                             Console.WriteLine("Ange det beloppet du vill ta ut!");
-                            double money = Convert.ToDouble(Console.ReadLine());
+                            double money = TryAndCatch();
                             bool withdraw = bankClass.Withdrawn(money);
                             Console.WriteLine(bankClass.CheckAmountOfWithdraw(money, withdraw));
                             Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                             Console.ReadKey();
-
                             break;
 
                         case MenuChoices.TRANSAKTIONSHISTORIK:
@@ -73,7 +80,7 @@ namespace E_ATM
 
                         case MenuChoices.INSÄTTNING:
                             Console.WriteLine("Var god och ange insättningsbeloppet:");
-                            double amountOfMoney2 = double.Parse(Console.ReadLine());
+                            double amountOfMoney2 = TryAndCatch();
                             double newBalance = bankClass.Deposit(amountOfMoney2);
                             Console.WriteLine($"Ditt nya belopp: {newBalance}");
                             Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
@@ -93,8 +100,6 @@ namespace E_ATM
                     }
                 }
             }
-
         }
-
     }
 }

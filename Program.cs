@@ -6,9 +6,7 @@ namespace E_ATM
     {
         static void Main(string[] args)
         {
-
             MenuClass menuClass = new MenuClass();
-            //test
             LoginClass loginClass = new LoginClass();
             loginClass.cardNum = 123;
             loginClass.pinNum = 111;
