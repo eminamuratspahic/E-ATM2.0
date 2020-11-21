@@ -7,13 +7,12 @@ namespace E_ATM
         static void Main(string[] args)
         {
 
-            MenuClass menuClass = new MenuClass();
-            //test
             LoginClass loginClass = new LoginClass();
             loginClass.cardNum = 123;
             loginClass.pinNum = 111;
+            Console.Clear();
             Console.WriteLine("Välkommen till E-ATM!");
-            Console.WriteLine("Skriv in ditt kortnummer!");
+            Console.WriteLine("\nSkriv in ditt kortnummer!");
             int pin = 0;
             int card = 0;
             
@@ -23,7 +22,7 @@ namespace E_ATM
             // metod för inloggning pin
             Console.WriteLine(loginClass.VerifyPin(pin));
             
-            menuClass.ShowMenu();
+            
                 
 
 

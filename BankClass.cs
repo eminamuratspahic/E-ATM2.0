@@ -100,7 +100,7 @@ namespace E_ATM
             if (withdraw && amountOfWithdrawnsLeft > 0)
             {
                 amountOfWithdrawnsLeft--;
-                output = $"Du tog ut {money} kr! Ditt nya belopp är {amountOfExistingMoney}\nDu har {amountOfWithdrawnsLeft} uttag kvar";
+                output = $"Du tog ut {money} kr! Ditt nya belopp är {amountOfExistingMoney} kr.\nDu har {amountOfWithdrawnsLeft} uttag kvar";
 
             }
             else if (amountOfWithdrawnsLeft == 0)
