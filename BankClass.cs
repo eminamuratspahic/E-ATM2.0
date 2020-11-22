@@ -38,23 +38,30 @@ namespace E_ATM
         public string AllTransaction()
         {
             string output = "";
+
+
             var timeAndMoney = time.Zip(transaction, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
                 output += ($"{nw.time}:-{nw.money}kr\n");
             }
+
+
             var timeAndMoney1 = time.Zip(deposit, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney1)
             {
                 output += ($"{nw.time}:+{nw.money}kr\n");
             }
+
             return output + $"Tillgängligt belopp: {amountOfExistingMoney} kr";
         }
 
         public double Deposit(double amount)
         {
+            var date = DateTime.Now;
             amountOfExistingMoney += amount;
             deposit.Add(amount);
+            time.Add(date);
             return amountOfExistingMoney;
         }
 

@@ -39,7 +39,7 @@ namespace E_ATM
                 int index = 0;
                 Console.WriteLine("E-ATM\n");
 
-                foreach (string str in Enum.GetNames(typeof(MenuChoices))) 
+                foreach (string str in Enum.GetNames(typeof(MenuChoices)))
                 {
                     index++;
 
@@ -57,9 +57,8 @@ namespace E_ATM
                     Console.ReadKey();
                 }
                 else
-                {  
+                {
                     MenuChoices MenuChoice = (MenuChoices)Enum.Parse(typeof(MenuChoices), choice);
-
                     switch (MenuChoice)
                     {
                         case MenuChoices.UTTAG:
@@ -67,7 +66,7 @@ namespace E_ATM
                             Console.WriteLine("Ange det beloppet du vill ta ut!");
                             double money = TryAndCatch();
                             bool withdraw = bankClass.Withdrawn(money);
-                            Console.WriteLine(bankClass.CheckAmountOfWithdraw(money, withdraw));
+                            Console.WriteLine(bankClass.CheckAmountOfWithdraw(money,withdraw));
                             Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
