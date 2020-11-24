@@ -21,7 +21,6 @@ namespace E_ATM
         {
             maxAmount = 5000;
             var date = DateTime.Now;
-
             if (amount <= amountOfExistingMoney && amount <= maxAmount)
             {
                 amountOfExistingMoney -= amount;
@@ -38,21 +37,16 @@ namespace E_ATM
         public string AllTransaction()
         {
             string output = "";
-
-
             var timeAndMoney = time.Zip(transaction, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
                 output += ($"{nw.time}:-{nw.money}kr\n");
             }
-
-
             var timeAndMoney1 = time.Zip(deposit, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney1)
             {
                 output += ($"{nw.time}:+{nw.money}kr\n");
             }
-
             return output + $"Tillgängligt belopp: {amountOfExistingMoney} kr";
         }
 

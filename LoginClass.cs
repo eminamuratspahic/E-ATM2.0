@@ -12,58 +12,41 @@ namespace E_ATM
         {
         }
 
-        public string VerifyCardNumber(int card)
-        {   
-            while (true)
+        public bool VerifyCardNumber(double card)
+        {
+            if (cardNum == card)
             {
-                try
-                {
-                    card = int.Parse(Console.ReadLine());
-                    if (cardNum == card)
-                    {
-                        return "Grattis du kom in! Slå in din pinkod!";
-                    }
-                    else
-                    {
-                        Console.WriteLine("Fel försök igen!");
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Ange i siffror!");
-                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        public string VerifyPin(int pin)
+
+        public string VerifyPin(double pin)
         {
-            amountOfTries = 2;
-            while (true)
-            {
-                try
+            string output = "";
+
+                if (amountOfTries > 0 && pinNum == pin)
                 {
-                    pin = int.Parse(Console.ReadLine());
-                    if (amountOfTries > 0 && pinNum == pin)
-                    {
-                        Console.WriteLine("Grattis du kom in!");
-                        menuClass.ShowMenu();
-                    }
-                    else if (amountOfTries == 0)
-                    {
-                        return "För många misslyckade försök! Ditt kort spärras!";
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Fel försök igen! Du har {amountOfTries} försök kvar!");
-                        amountOfTries--;
-                    }
+                    output += "Grattis! Du kom in!";
+                    menuClass.ShowMenu();
                 }
-                catch (Exception)
+                else if (amountOfTries == 0)
                 {
-                    Console.WriteLine("Du har matat in felaktig format. Ange pin i siffror!");
+                    output += "För många misslyckade försök! Ditt kort spärras!";
+                    Environment.Exit(0);
                 }
-            }
+                else
+                {
+                    amountOfTries--;
+                    output += $"Fel försök igen! Du har {amountOfTries} försök kvar!";
+                }
+                return output;
         }
     }
 }
+
 
