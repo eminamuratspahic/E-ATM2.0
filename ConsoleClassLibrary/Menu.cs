@@ -84,12 +84,14 @@ namespace E_ATM
                                     else if (!bankclass.CheckFailAttempt(userId))
                                     {
                                         Console.WriteLine("You have been blocked out from your account, to many attempts. Try again later!");
+                                        Console.ReadKey();
                                         userId = 0;
                                     }
                                     else
                                     {
 
                                         Console.WriteLine("Fail");
+                                        Console.ReadKey();
                                         test.FailAttempt(userId);
                                         userId = 0;
                                     }
@@ -147,19 +149,24 @@ namespace E_ATM
                             Console.WriteLine("Amount to withdraw:");
                             try
                             {
-                                string amount = Console.ReadLine();
+                                string amountWithdraw = Console.ReadLine();
                                 if(bankclass.CheckAmountOfWithdraw(userId))
                                 {
-                                    Console.WriteLine(bankclass.WithdrawMoney(Convert.ToInt64(amount), userId));
+                                    Console.WriteLine(bankclass.WithdrawMoney(Convert.ToInt64(amountWithdraw), userId));
                                 }
+                                else
+                                {
+                                    Console.WriteLine("Max ammount of withdrawal, try again later!");
+                                }
+                                
                                 Console.ReadKey();
                                 break;
                             }
-                            catch (Exception)
-                            {
-                                Console.WriteLine("Invalid input!");
-                                Console.ReadKey();
-                            }
+                             catch (Exception)
+                             {
+                                 Console.WriteLine("Invalid input!");
+                                 Console.ReadKey();
+                             }
 
 
 
@@ -189,22 +196,22 @@ namespace E_ATM
                     case 3:
                         Console.Clear();
                         Console.WriteLine("Amount to deposit: ");
-                        string depositAmount = Console.ReadLine();
-                        
+                        string amount = Console.ReadLine();
                         try
                         {
-                            Console.WriteLine(bankclass.DepositMoney(userId, Convert.ToInt64(depositAmount)));
+                            Console.WriteLine(bankclass.DepositMoney(userId, Convert.ToInt64(amount)));
                             Console.ReadKey();
                         }
                         catch(Exception)
                         {
-                            Console.WriteLine("Invalid input!");
-                            Console.ReadKey();
+                             Console.WriteLine("Invalid input!");
+                             Console.ReadKey();
                         }
+
                         break;
+
                     case 4:
                         return;
-
 
                     default:
                         break;
