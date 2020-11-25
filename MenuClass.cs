@@ -53,7 +53,7 @@ namespace E_ATM
                 {
 
                     Console.WriteLine("Valet ska anges i siffervärde, möjliga val 1-2-3-4.");
-                    Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
+                    Console.WriteLine("Tryck valfri knapp får att gå vidare...");
                     Console.ReadKey();
                 }
                 else
@@ -63,18 +63,18 @@ namespace E_ATM
                     {
                         case MenuChoices.UTTAG:
                             Console.WriteLine("UTTAG");
-                            Console.WriteLine("Ange det beloppet du vill ta ut!");
+                            Console.WriteLine("Ange det belopp du vill ta ut!");
                             double money = TryAndCatch();
                             bool withdraw = bankClass.Withdrawn(money);
                             Console.WriteLine(bankClass.CheckAmountOfWithdraw(money,withdraw));
-                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
+                            Console.WriteLine("Tryck valfri knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
 
                         case MenuChoices.TRANSAKTIONSHISTORIK:
                             Console.WriteLine("TRANSAKTIONSHISTORIK");
-                            Console.WriteLine(bankClass.AllTransaction());
-                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
+                            Console.WriteLine(bankClass.Allwithdrawal());
+                            Console.WriteLine("Tryck valfri knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
 
@@ -83,7 +83,7 @@ namespace E_ATM
                             double amountOfMoney2 = TryAndCatch();
                             double newBalance = bankClass.Deposit(amountOfMoney2);
                             Console.WriteLine($"Ditt nya belopp: {newBalance}");
-                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
+                            Console.WriteLine("Tryck valfri knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
 
@@ -93,8 +93,8 @@ namespace E_ATM
                             break;
 
                         default:
-                            Console.WriteLine("Felaktig val, försök igen.");
-                            Console.WriteLine("Tryck valfritt knapp får att gå vidare...");
+                            Console.WriteLine("Felaktigt val, försök igen.");
+                            Console.WriteLine("Tryck valfri knapp får att gå vidare...");
                             Console.ReadKey();
                             break;
                     }

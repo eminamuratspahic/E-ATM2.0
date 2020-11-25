@@ -22,7 +22,7 @@ namespace E_ATM
                 bool verify = loginClass.VerifyCardNumber(card);
                 if (verify)
                 {
-                    Console.WriteLine("Grattis du kom in! Ange pin!");
+                    Console.WriteLine("Ange pin!");
                     while (true)
                     {
                         double pin = TryAndCatch();

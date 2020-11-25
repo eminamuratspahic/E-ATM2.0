@@ -9,7 +9,7 @@ namespace E_ATM
         public int amountOfWithdrawnsLeft { get; set; }
         public int maxAmount { get; set; }
         public double amountOfExistingMoney = 10000;
-        private List<double> transaction = new List<double>();
+        private List<double> withdrawal = new List<double>();
         private List<double> deposit = new List<double>();
         private List<DateTime> time = new List<DateTime>();
 
@@ -24,7 +24,7 @@ namespace E_ATM
             if (amount <= amountOfExistingMoney && amount <= maxAmount)
             {
                 amountOfExistingMoney -= amount;
-                transaction.Add(amount);
+                withdrawal.Add(amount);
                 time.Add(date);
                 return true;
             }
@@ -34,10 +34,10 @@ namespace E_ATM
             }
         }
 
-        public string AllTransaction()
+        public string Allwithdrawal()
         {
             string output = "";
-            var timeAndMoney = time.Zip(transaction, (n, w) => new { time = n, money = w });
+            var timeAndMoney = time.Zip(withdrawal, (n, w) => new { time = n, money = w });
             foreach (var nw in timeAndMoney)
             {
                 output += ($"{nw.time}:-{nw.money}kr\n");
